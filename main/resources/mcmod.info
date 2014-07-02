@@ -1,0 +1,16 @@
+[
+{
+  "modid": "xxxmod",
+  "name": "xxx Mod 1.7.2",
+  "description": "Testing random things.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["UnrelentlessAce"],
+  "credits": "UnrelentlessAce",
+  "logoFile": "Logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
