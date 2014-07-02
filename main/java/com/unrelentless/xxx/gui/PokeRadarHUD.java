@@ -69,9 +69,11 @@ public class PokeRadarHUD extends Gui{
 			findPokemon(mc.thePlayer);
 			Iterator iterator = pokemon.iterator();
 			while(iterator.hasNext()){
-				this.mc.fontRenderer.drawString((String)iterator.next(), 2, 2+textBuffer, 0xFFFFFF);
 				textBuffer+=10;
+				this.mc.fontRenderer.drawString((String)iterator.next(), 2, 2+textBuffer, 0xFFFFFF);
 			}
+			pokemon.removeAll(pokemon);
+			textBuffer = 0;
 		}
 
 	}
@@ -101,11 +103,15 @@ public class PokeRadarHUD extends Gui{
 					thisEntity.writeToNBT(compound);
 
 					if(compound.getBoolean("IsShiny")){	
-						pokemon.add(EnumChatFormatting.GOLD + "Shiny " +compound.getString("Name") +" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +
+						pokemon.add("Shiny " + EnumChatFormatting.GOLD + compound.getString("Name") +EnumChatFormatting.WHITE+" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +
 								"("+entityPosX+","+entityPosY+","+entityPosZ +")");
 					}else if(compound.getShort("BossMode")>0){
-						pokemon.add(EnumChatFormatting.RED + "Boss " +compound.getString("Name") +" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +"("+entityPosX+","+entityPosY+","+entityPosZ +")");
-					}
+						pokemon.add("Boss " + EnumChatFormatting.RED + compound.getString("Name") +EnumChatFormatting.WHITE+" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +
+								"("+entityPosX+","+entityPosY+","+entityPosZ +")");
+					}/*else if(compound.getShort("Growth")==6){
+						pokemon.add("Enormous " + EnumChatFormatting.BOLD + compound.getString("Name") +EnumChatFormatting.WHITE+" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +
+								"("+entityPosX+","+entityPosY+","+entityPosZ +")");
+					}*/
 				}
 			}
 		}
