@@ -8,6 +8,7 @@ Changelog:
 v0.3.6
 -Fossil finder added.
 -Fossil finder now find Diamonds, Emeralds and Gold.
+-Fossil finder now find Thaumcraft nodes.
 -Pokeradar added
 -PokeRadar now picks up pokeloot too.
 -Added Conifg for search radius modification.
