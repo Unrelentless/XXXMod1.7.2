@@ -13,6 +13,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.unrelentless.xxx.XxxMod;
+import com.unrelentless.xxx.lib.Config;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -29,9 +30,9 @@ public class KeybindHandler {
 
 		if(XxxMod.scan.isPressed() && System.nanoTime()>lastPressed+1000) {
 			lastPressed=System.nanoTime();
-			int maxX = 8;
-			int maxY = 64;
-			int maxZ = 8;
+			int maxX = Config.block_search_radius;
+			int maxY = Config.block_search_radius_y;
+			int maxZ = Config.block_search_radius;
 
 			double playerPosX = player.posX;
 			double playerPosY = player.posY;

@@ -27,6 +27,7 @@ import org.lwjgl.util.Color;
 
 import com.unrelentless.xxx.XxxMod;
 import com.unrelentless.xxx.handlers.KeybindHandler;
+import com.unrelentless.xxx.lib.Config;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -75,7 +76,6 @@ public class PokeRadarHUD extends Gui{
 			pokemon.removeAll(pokemon);
 			textBuffer = 0;
 		}
-
 	}
 
 
@@ -85,8 +85,13 @@ public class PokeRadarHUD extends Gui{
 		int xPos = (int)player.posX;
 		int yPos = (int)player.posY;
 		int zPos = (int)player.posZ;
+
+		int maxX = Config.pokemon_search_radius;
+		int maxY = 10;
+		int maxZ = Config.pokemon_search_radius;
+
 		int dir = MathHelper.floor_double((double)((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-		float closest = 64F;
+		float closest = (float)Config.pokemon_search_radius;
 		Entity thisEntity;
 		String entityName;
 		for (int l = 0; l < world.loadedEntityList.size(); l++){
@@ -102,12 +107,17 @@ public class PokeRadarHUD extends Gui{
 					NBTTagCompound compound = new NBTTagCompound();
 					thisEntity.writeToNBT(compound);
 
+					int hypoPlayer = (int) Math.sqrt(Math.pow(xPos, 2) + Math.pow(zPos, 2));
+					int hypoEntity = (int) Math.sqrt(Math.pow(entityPosX, 2) + Math.pow(entityPosZ, 2));
+
+					int absHypo = Math.abs(hypoPlayer - hypoEntity);
+
 					if(compound.getBoolean("IsShiny")){	
 						pokemon.add("Shiny " + EnumChatFormatting.GOLD + compound.getString("Name") +EnumChatFormatting.WHITE+" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +
-								"("+entityPosX+","+entityPosY+","+entityPosZ +")");
+								" ("+ absHypo +" blocks away.)");
 					}else if(compound.getShort("BossMode")>0){
 						pokemon.add("Boss " + EnumChatFormatting.RED + compound.getString("Name") +EnumChatFormatting.WHITE+" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +
-								"("+entityPosX+","+entityPosY+","+entityPosZ +")");
+								" ("+ absHypo +" blocks away.)");
 					}/*else if(compound.getShort("Growth")==6){
 						pokemon.add("Enormous " + EnumChatFormatting.BOLD + compound.getString("Name") +EnumChatFormatting.WHITE+" due: "+ checkDir(player, dir, entityPosX, entityPosZ) +
 								"("+entityPosX+","+entityPosY+","+entityPosZ +")");
@@ -161,6 +171,6 @@ public class PokeRadarHUD extends Gui{
 			}
 		default:
 		}
-		return "This way";
+		return "Straight Ahead";
 	}
 }
