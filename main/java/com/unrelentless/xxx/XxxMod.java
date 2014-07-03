@@ -29,7 +29,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class XxxMod
 {
 	public static final String MODID = "xxxmod";
-	public static final String VERSION = "0.3.6";
+	public static final String VERSION = "0.3.7";
 
 	//Keybinds
 	public static KeyBinding scan, scanPoke;

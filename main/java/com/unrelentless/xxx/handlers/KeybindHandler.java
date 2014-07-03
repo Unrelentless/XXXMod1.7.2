@@ -50,7 +50,7 @@ public class KeybindHandler {
 
 							Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-							if(block.getIdFromBlock(block) == 489){
+							if(block.getLocalizedName().equals("Fossil")){
 								player.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "Fossil "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
 								break outerloop;
 							}
@@ -68,7 +68,7 @@ public class KeybindHandler {
 
 							Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-							if(block.getIdFromBlock(block) == 56){
+							if(block.getLocalizedName().equals("Diamond Ore")){
 								player.addChatMessage(new ChatComponentText(EnumChatFormatting.BLUE + "Diamond Cluster"+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
 								break outerloop;
 							}
@@ -86,7 +86,7 @@ public class KeybindHandler {
 
 								Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-								if(block.getIdFromBlock(block) == 129){
+								if(block.getLocalizedName().equals("Emerald Ore")){
 									player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Emerald "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
 									break outerloop;
 								}
@@ -104,7 +104,7 @@ public class KeybindHandler {
 
 								Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-								if(block.getIdFromBlock(block) == 14){
+								if(block.getLocalizedName().equals("Gold Ore")){
 									player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "Gold Cluster "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
 									break outerloop;
 								}
@@ -126,7 +126,7 @@ public class KeybindHandler {
 
 								Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-								if(block.getIdFromBlock(block) == 551){
+								if(block.getLocalizedName().equals("Aura Node")){
 									player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Node "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
 								}
 							}
