@@ -102,7 +102,7 @@ public class PokelootRadarHUD extends Gui{
 
 					Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-					if(block.getLocalizedName().contains("Chest") && (block.getIdFromBlock(block) != 54 || block.getIdFromBlock(block) != 146)){
+					if(block.getLocalizedName().contains("Chest") && block.getIdFromBlock(block) != 54 && block.getIdFromBlock(block) != 146){
 						pokeloots.add(EnumChatFormatting.GREEN + "Pokeloots "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!");
 					}
 				}
