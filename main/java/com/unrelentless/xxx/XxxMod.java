@@ -4,6 +4,10 @@ package com.unrelentless.xxx;
 import java.io.File;
 import java.io.IOException;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.common.MinecraftForge;
+
 import org.lwjgl.input.Keyboard;
 
 import com.unrelentless.xxx.gui.PokeRadarHUD;
@@ -12,10 +16,6 @@ import com.unrelentless.xxx.handlers.ConfigHandler;
 import com.unrelentless.xxx.handlers.KeybindHandler;
 import com.unrelentless.xxx.proxy.CommonProxy;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.init.Blocks;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -29,7 +29,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class XxxMod
 {
 	public static final String MODID = "xxxmod";
-	public static final String VERSION = "0.3.7";
+	public static final String VERSION = "0.3.8";
 
 	//Keybinds
 	public static KeyBinding scan, scanPoke;
