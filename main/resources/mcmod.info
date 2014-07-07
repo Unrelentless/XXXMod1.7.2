@@ -5,10 +5,10 @@
   "description": "Testing random things.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
+  "url": "https://github.com/Unrelentless/XXXMod1.7.2/blob/master/README.md",
+  "updateUrl": "https://github.com/Unrelentless/XXXMod1.7.2/blob/master/README.md",
   "authorList": ["UnrelentlessAce"],
-  "credits": "UnrelentlessAce",
+  "credits": "Pixelmon Team, Forge Team, Gnomorian",
   "logoFile": "Logo.png",
   "screenshots": [],
   "dependencies": []

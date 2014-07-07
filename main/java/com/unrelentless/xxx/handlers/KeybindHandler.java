@@ -1,16 +1,9 @@
 package com.unrelentless.xxx.handlers;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 
 import com.unrelentless.xxx.XxxMod;
 import com.unrelentless.xxx.lib.Config;
@@ -37,7 +30,6 @@ public class KeybindHandler {
 			double playerPosX = player.posX;
 			double playerPosY = player.posY;
 			double playerPosZ = player.posZ;
-			boolean found = false;
 
 			outerloop:
 				for(int i=-maxX;i<=maxX;i++){
@@ -57,6 +49,25 @@ public class KeybindHandler {
 						}
 					}
 				}
+			if(Config.do_gem_search){
+				outerloop:
+					for(int i=-maxX;i<=maxX;i++){
+						for(int j=-maxZ;j<=maxZ;j++){
+							for(int k=-maxY;k<=0;k++){
+
+								int blockX = (int) (playerPosX+i);
+								int blockY = (int) (playerPosY+k);
+								int blockZ = (int) (playerPosZ+j);
+
+								Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
+
+								if(block.getLocalizedName().equals("Diamond Ore")){
+									player.addChatMessage(new ChatComponentText(EnumChatFormatting.BLUE + "Diamond Cluster"+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
+									break outerloop;
+								}
+							}
+						}
+					}
 			outerloop:
 				for(int i=-maxX;i<=maxX;i++){
 					for(int j=-maxZ;j<=maxZ;j++){
@@ -68,70 +79,53 @@ public class KeybindHandler {
 
 							Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-							if(block.getLocalizedName().equals("Diamond Ore")){
-								player.addChatMessage(new ChatComponentText(EnumChatFormatting.BLUE + "Diamond Cluster"+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
+							if(block.getLocalizedName().equals("Emerald Ore")){
+								player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Emerald "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
 								break outerloop;
 							}
 						}
 					}
 				}
-				outerloop:
-					for(int i=-maxX;i<=maxX;i++){
-						for(int j=-maxZ;j<=maxZ;j++){
-							for(int k=-maxY;k<=0;k++){
+					outerloop:
+						for(int i=-maxX;i<=maxX;i++){
+							for(int j=-maxZ;j<=maxZ;j++){
+								for(int k=-maxY;k<=0;k++){
 
-								int blockX = (int) (playerPosX+i);
-								int blockY = (int) (playerPosY+k);
-								int blockZ = (int) (playerPosZ+j);
+									int blockX = (int) (playerPosX+i);
+									int blockY = (int) (playerPosY+k);
+									int blockZ = (int) (playerPosZ+j);
 
-								Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
+									Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
 
-								if(block.getLocalizedName().equals("Emerald Ore")){
-									player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Emerald "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
-									break outerloop;
+									if(block.getLocalizedName().equals("Gold Ore")){
+										player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "Gold Cluster "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
+										break outerloop;
+									}
 								}
 							}
 						}
-					}
-				outerloop:
-					for(int i=-maxX;i<=maxX;i++){
-						for(int j=-maxZ;j<=maxZ;j++){
-							for(int k=-maxY;k<=0;k++){
 
-								int blockX = (int) (playerPosX+i);
-								int blockY = (int) (playerPosY+k);
-								int blockZ = (int) (playerPosZ+j);
+				maxX = 64;
+				maxY = 20;
+				maxZ = 64;
 
-								Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
+				for(int i=-maxX;i<=maxX;i++){
+					for(int j=-maxZ;j<=maxZ;j++){
+						for(int k=-20;k<=maxY;k++){
 
-								if(block.getLocalizedName().equals("Gold Ore")){
-									player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "Gold Cluster "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
-									break outerloop;
-								}
+							int blockX = (int) (playerPosX+i);
+							int blockY = (int) (playerPosY+k);
+							int blockZ = (int) (playerPosZ+j);
+
+							Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
+
+							if(block.getLocalizedName().equals("Aura Node")){
+								player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Node "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
 							}
 						}
 					}
-
-					maxX = 64;
-					maxY = 20;
-					maxZ = 64;
-
-					for(int i=-maxX;i<=maxX;i++){
-						for(int j=-maxZ;j<=maxZ;j++){
-							for(int k=-20;k<=maxY;k++){
-
-								int blockX = (int) (playerPosX+i);
-								int blockY = (int) (playerPosY+k);
-								int blockZ = (int) (playerPosZ+j);
-
-								Block block = player.worldObj.getBlock(blockX, blockY, blockZ);
-
-								if(block.getLocalizedName().equals("Aura Node")){
-									player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Node "+EnumChatFormatting.WHITE+"at: "+blockX+", "+blockY+", "+blockZ+"!!"));
-								}
-							}
-						}
-					}
+				}
+			}
 		}else if(XxxMod.scanPoke.isPressed() && System.nanoTime()>lastPressed+1000) {
 			isHUD=!isHUD;
 		}

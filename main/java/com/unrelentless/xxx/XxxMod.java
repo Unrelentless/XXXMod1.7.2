@@ -41,7 +41,7 @@ public class XxxMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws IOException{
 
-		ConfigHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + this.MODID + File.separator + this.MODID + ".cfg"));
+		ConfigHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + XxxMod.MODID + File.separator + XxxMod.MODID + ".cfg"));
 
 	}
 	@EventHandler

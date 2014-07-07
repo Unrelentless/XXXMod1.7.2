@@ -1,31 +1,20 @@
 package com.unrelentless.xxx.gui;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.Color;
-
-import com.unrelentless.xxx.XxxMod;
 import com.unrelentless.xxx.handlers.KeybindHandler;
 import com.unrelentless.xxx.lib.Config;
 
@@ -52,26 +41,20 @@ public class PokeRadarHUD extends Gui{
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderExperienceBar(RenderGameOverlayEvent event)
 	{
-		// The center of the screen can be gotten like this during this event:
-		int xMax = event.resolution.getScaledWidth();
-		int yMax = event.resolution.getScaledHeight();
 
 		if(event.isCancelable() || event.type != ElementType.EXPERIENCE)
 		{      
 			return;
 		}
-		// Starting position for the buff bar - 2 pixels from the top left corner.
-		int xPos = 2;
-		int yPos = 2;
 
 		if(KeybindHandler.isHUD) {
 			int textBuffer = 0;
 			this.mc.fontRenderer.drawString("Pokemon of interest:", 2, 2, 0xFFFFFF);
 			findPokemon(mc.thePlayer);
-			Iterator iterator = pokemon.iterator();
+			Iterator<String> iterator = pokemon.iterator();
 			while(iterator.hasNext()){
 				textBuffer+=10;
-				this.mc.fontRenderer.drawString((String)iterator.next(), 2, 2+textBuffer, 0xFFFFFF);
+				this.mc.fontRenderer.drawString(iterator.next(), 2, 2+textBuffer, 0xFFFFFF);
 			}
 			pokemon.removeAll(pokemon);
 			textBuffer = 0;
@@ -86,14 +69,9 @@ public class PokeRadarHUD extends Gui{
 		int yPos = (int)player.posY;
 		int zPos = (int)player.posZ;
 
-		int maxX = Config.pokemon_search_radius;
-		int maxY = 10;
-		int maxZ = Config.pokemon_search_radius;
-
 		int dir = MathHelper.floor_double((double)((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 		float closest = (float)Config.pokemon_search_radius;
 		Entity thisEntity;
-		String entityName;
 		for (int l = 0; l < world.loadedEntityList.size(); l++){
 
 			if (((Entity)world.loadedEntityList.get(l)).getDistanceToEntity(player)<closest)
